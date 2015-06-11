@@ -4,3 +4,4 @@
 2060 FOR n = 2 TO 45
 2080 LET f(n) = f(n-1) + f(n-2)
 2090 NEXT n
+2100 PRINT f(n)
