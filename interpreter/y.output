@@ -1,0 +1,2293 @@
+
+state 0
+	$accept: .program $end 
+
+	INTEGER  shift 5
+	.  error
+
+	Lines  goto 2
+	Line  goto 3
+	LineNumber  goto 4
+	program  goto 1
+
+state 1
+	$accept:  program.$end 
+
+	$end  accept
+	.  error
+
+
+state 2
+	program:  Lines.    (1)
+	Lines:  Lines.Line 
+
+	INTEGER  shift 5
+	.  reduce 1 (src line 122)
+
+	Line  goto 6
+	LineNumber  goto 4
+
+state 3
+	Lines:  Line.    (2)
+
+	.  reduce 2 (src line 129)
+
+
+state 4
+	Line:  LineNumber.Statements NEWLINE 
+
+	GOTO  shift 22
+	GO  shift 23
+	PRINT  shift 24
+	IF  shift 26
+	FOR  shift 28
+	NEXT  shift 29
+	REM  shift 33
+	DIM  shift 27
+	DEF  shift 31
+	IDENTIFIER  shift 34
+	RETURN  shift 30
+	END  shift 32
+	LET  shift 25
+	.  error
+
+	Statement  goto 8
+	Statements  goto 7
+	GotoStatement  goto 9
+	EndStatement  goto 19
+	PrintStatement  goto 10
+	ForStatement  goto 14
+	NextStatement  goto 15
+	AssignmentStatement  goto 11
+	ReturnStatement  goto 17
+	GoSubStatement  goto 16
+	DefStatement  goto 18
+	IfStatement  goto 12
+	OperationStatement  goto 21
+	RemarkStatement  goto 20
+	DimStatement  goto 13
+
+state 5
+	LineNumber:  INTEGER.    (5)
+
+	.  reduce 5 (src line 143)
+
+
+state 6
+	Lines:  Lines Line.    (3)
+
+	.  reduce 3 (src line 133)
+
+
+state 7
+	Line:  LineNumber Statements.NEWLINE 
+	Statements:  Statements.COLON Statement 
+
+	NEWLINE  shift 35
+	COLON  shift 36
+	.  error
+
+
+state 8
+	Statements:  Statement.    (6)
+
+	.  reduce 6 (src line 148)
+
+
+state 9
+	Statement:  GotoStatement.    (8)
+
+	.  reduce 8 (src line 157)
+
+
+state 10
+	Statement:  PrintStatement.    (9)
+
+	.  reduce 9 (src line 158)
+
+
+state 11
+	Statement:  AssignmentStatement.    (10)
+
+	.  reduce 10 (src line 159)
+
+
+state 12
+	Statement:  IfStatement.    (11)
+
+	.  reduce 11 (src line 160)
+
+
+state 13
+	Statement:  DimStatement.    (12)
+
+	.  reduce 12 (src line 161)
+
+
+state 14
+	Statement:  ForStatement.    (13)
+
+	.  reduce 13 (src line 162)
+
+
+state 15
+	Statement:  NextStatement.    (14)
+
+	.  reduce 14 (src line 163)
+
+
+state 16
+	Statement:  GoSubStatement.    (15)
+
+	.  reduce 15 (src line 164)
+
+
+state 17
+	Statement:  ReturnStatement.    (16)
+
+	.  reduce 16 (src line 165)
+
+
+state 18
+	Statement:  DefStatement.    (17)
+
+	.  reduce 17 (src line 166)
+
+
+state 19
+	Statement:  EndStatement.    (18)
+
+	.  reduce 18 (src line 167)
+
+
+state 20
+	Statement:  RemarkStatement.    (19)
+
+	.  reduce 19 (src line 168)
+
+
+state 21
+	Statement:  OperationStatement.    (20)
+
+	.  reduce 20 (src line 169)
+
+
+state 22
+	GotoStatement:  GOTO.Expression 
+
+	INTEGER  shift 56
+	FLOAT  shift 57
+	STRING_LITERAL  shift 55
+	BOOLEAN  shift 58
+	NULL  shift 59
+	IDENTIFIER  shift 63
+	MINUS  shift 62
+	LEFT_PARENTHESIS  shift 38
+	LEFT_BRACKET  shift 61
+	LEFT_BRACE  shift 60
+	.  error
+
+	Symbol  goto 44
+	MapPropertyExpression  goto 43
+	AdditiveExpression  goto 39
+	MultiplicationExpression  goto 40
+	DivisionExpression  goto 41
+	PowerExpression  goto 42
+	Expression  goto 37
+	UnaryExpression  goto 53
+	Identifier  goto 54
+	StringLiteral  goto 45
+	Integer  goto 46
+	Float  goto 47
+	Null  goto 49
+	Boolean  goto 48
+	Array  goto 51
+	Map  goto 50
+	FunctionCall  goto 52
+
+state 23
+	GotoStatement:  GO.TO Expression 
+	GoSubStatement:  GO.SUB Expression 
+
+	TO  shift 64
+	SUB  shift 65
+	.  error
+
+
+state 24
+	PrintStatement:  PRINT.Args 
+	Args: .    (86)
+
+	INTEGER  shift 56
+	FLOAT  shift 57
+	STRING_LITERAL  shift 55
+	BOOLEAN  shift 58
+	NULL  shift 59
+	IDENTIFIER  shift 63
+	MINUS  shift 62
+	LEFT_PARENTHESIS  shift 38
+	LEFT_BRACKET  shift 61
+	LEFT_BRACE  shift 60
+	.  reduce 86 (src line 441)
+
+	Args  goto 66
+	Arg  goto 67
+	Symbol  goto 44
+	MapPropertyExpression  goto 43
+	AdditiveExpression  goto 39
+	MultiplicationExpression  goto 40
+	DivisionExpression  goto 41
+	PowerExpression  goto 42
+	Expression  goto 68
+	UnaryExpression  goto 53
+	Identifier  goto 54
+	StringLiteral  goto 45
+	Integer  goto 46
+	Float  goto 47
+	Null  goto 49
+	Boolean  goto 48
+	Array  goto 51
+	Map  goto 50
+	FunctionCall  goto 52
+
+state 25
+	AssignmentStatement:  LET.Symbol EQUALS Expression 
+	AssignmentStatement:  LET.FunctionCall EQUALS Expression 
+	AssignmentStatement:  LET.MapPropertyExpression EQUALS Expression 
+
+	INTEGER  shift 56
+	FLOAT  shift 57
+	STRING_LITERAL  shift 55
+	BOOLEAN  shift 58
+	NULL  shift 59
+	IDENTIFIER  shift 63
+	MINUS  shift 62
+	LEFT_PARENTHESIS  shift 38
+	LEFT_BRACKET  shift 61
+	LEFT_BRACE  shift 60
+	.  error
+
+	Symbol  goto 69
+	MapPropertyExpression  goto 71
+	AdditiveExpression  goto 39
+	MultiplicationExpression  goto 40
+	DivisionExpression  goto 41
+	PowerExpression  goto 42
+	Expression  goto 72
+	UnaryExpression  goto 53
+	Identifier  goto 54
+	StringLiteral  goto 45
+	Integer  goto 46
+	Float  goto 47
+	Null  goto 49
+	Boolean  goto 48
+	Array  goto 51
+	Map  goto 50
+	FunctionCall  goto 70
+
+state 26
+	IfStatement:  IF.RelationExpression THEN Expression 
+
+	INTEGER  shift 56
+	FLOAT  shift 57
+	STRING_LITERAL  shift 55
+	BOOLEAN  shift 58
+	NULL  shift 59
+	IDENTIFIER  shift 63
+	MINUS  shift 62
+	LEFT_PARENTHESIS  shift 38
+	LEFT_BRACKET  shift 61
+	LEFT_BRACE  shift 60
+	.  error
+
+	RelationExpression  goto 73
+	Symbol  goto 44
+	MapPropertyExpression  goto 43
+	AdditiveExpression  goto 39
+	MultiplicationExpression  goto 40
+	DivisionExpression  goto 41
+	PowerExpression  goto 42
+	Expression  goto 74
+	UnaryExpression  goto 53
+	Identifier  goto 54
+	StringLiteral  goto 45
+	Integer  goto 46
+	Float  goto 47
+	Null  goto 49
+	Boolean  goto 48
+	Array  goto 51
+	Map  goto 50
+	FunctionCall  goto 52
+
+state 27
+	DimStatement:  DIM.ArrayDefinitions 
+
+	IDENTIFIER  shift 63
+	.  error
+
+	Identifier  goto 77
+	ArrayDefinition  goto 76
+	ArrayDefinitions  goto 75
+
+state 28
+	ForStatement:  FOR.Identifier EQUALS Expression TO Expression 
+	ForStatement:  FOR.Identifier EQUALS Expression TO Expression STEP Expression 
+
+	IDENTIFIER  shift 63
+	.  error
+
+	Identifier  goto 78
+
+state 29
+	NextStatement:  NEXT.Identifier 
+
+	IDENTIFIER  shift 63
+	.  error
+
+	Identifier  goto 79
+
+state 30
+	ReturnStatement:  RETURN.    (30)
+
+	.  reduce 30 (src line 224)
+
+
+state 31
+	DefStatement:  DEF.Identifier EQUALS Expression 
+	DefStatement:  DEF.Identifier LEFT_PARENTHESIS Identifier RIGHT_PARENTHESIS EQUALS Expression 
+
+	IDENTIFIER  shift 63
+	.  error
+
+	Identifier  goto 80
+
+state 32
+	EndStatement:  END.    (23)
+
+	.  reduce 23 (src line 182)
+
+
+state 33
+	RemarkStatement:  REM.STRING_LITERAL 
+
+	STRING_LITERAL  shift 81
+	.  error
+
+
+state 34
+	OperationStatement:  IDENTIFIER.Args 
+	Args: .    (86)
+
+	INTEGER  shift 56
+	FLOAT  shift 57
+	STRING_LITERAL  shift 55
+	BOOLEAN  shift 58
+	NULL  shift 59
+	IDENTIFIER  shift 63
+	MINUS  shift 62
+	LEFT_PARENTHESIS  shift 38
+	LEFT_BRACKET  shift 61
+	LEFT_BRACE  shift 60
+	.  reduce 86 (src line 441)
+
+	Args  goto 82
+	Arg  goto 67
+	Symbol  goto 44
+	MapPropertyExpression  goto 43
+	AdditiveExpression  goto 39
+	MultiplicationExpression  goto 40
+	DivisionExpression  goto 41
+	PowerExpression  goto 42
+	Expression  goto 68
+	UnaryExpression  goto 53
+	Identifier  goto 54
+	StringLiteral  goto 45
+	Integer  goto 46
+	Float  goto 47
+	Null  goto 49
+	Boolean  goto 48
+	Array  goto 51
+	Map  goto 50
+	FunctionCall  goto 52
+
+state 35
+	Line:  LineNumber Statements NEWLINE.    (4)
+
+	.  reduce 4 (src line 138)
+
+
+state 36
+	Statements:  Statements COLON.Statement 
+
+	GOTO  shift 22
+	GO  shift 23
+	PRINT  shift 24
+	IF  shift 26
+	FOR  shift 28
+	NEXT  shift 29
+	REM  shift 33
+	DIM  shift 27
+	DEF  shift 31
+	IDENTIFIER  shift 34
+	RETURN  shift 30
+	END  shift 32
+	LET  shift 25
+	.  error
+
+	Statement  goto 83
+	GotoStatement  goto 9
+	EndStatement  goto 19
+	PrintStatement  goto 10
+	ForStatement  goto 14
+	NextStatement  goto 15
+	AssignmentStatement  goto 11
+	ReturnStatement  goto 17
+	GoSubStatement  goto 16
+	DefStatement  goto 18
+	IfStatement  goto 12
+	OperationStatement  goto 21
+	RemarkStatement  goto 20
+	DimStatement  goto 13
+
+state 37
+	GotoStatement:  GOTO Expression.    (27)
+	FunctionCall:  Expression.LEFT_PARENTHESIS Args RIGHT_PARENTHESIS 
+	AdditiveExpression:  Expression.PLUS Expression 
+	AdditiveExpression:  Expression.MINUS Expression 
+	MultiplicationExpression:  Expression.TIMES Expression 
+	DivisionExpression:  Expression.DIVIDE Expression 
+	PowerExpression:  Expression.CIRCUMFLEX Expression 
+	MapPropertyExpression:  Expression.DOT IDENTIFIER 
+	MapPropertyExpression:  Expression.LEFT_BRACKET Expression RIGHT_BRACKET 
+
+	DOT  shift 90
+	PLUS  shift 85
+	MINUS  shift 86
+	CIRCUMFLEX  shift 89
+	LEFT_PARENTHESIS  shift 84
+	LEFT_BRACKET  shift 91
+	TIMES  shift 87
+	DIVIDE  shift 88
+	.  reduce 27 (src line 210)
+
+
+state 38
+	Expression:  LEFT_PARENTHESIS.Expression RIGHT_PARENTHESIS 
+
+	INTEGER  shift 56
+	FLOAT  shift 57
+	STRING_LITERAL  shift 55
+	BOOLEAN  shift 58
+	NULL  shift 59
+	IDENTIFIER  shift 63
+	MINUS  shift 62
+	LEFT_PARENTHESIS  shift 38
+	LEFT_BRACKET  shift 61
+	LEFT_BRACE  shift 60
+	.  error
+
+	Symbol  goto 44
+	MapPropertyExpression  goto 43
+	AdditiveExpression  goto 39
+	MultiplicationExpression  goto 40
+	DivisionExpression  goto 41
+	PowerExpression  goto 42
+	Expression  goto 92
+	UnaryExpression  goto 53
+	Identifier  goto 54
+	StringLiteral  goto 45
+	Integer  goto 46
+	Float  goto 47
+	Null  goto 49
+	Boolean  goto 48
+	Array  goto 51
+	Map  goto 50
+	FunctionCall  goto 52
+
+state 39
+	Expression:  AdditiveExpression.    (56)
+
+	.  reduce 56 (src line 352)
+
+
+state 40
+	Expression:  MultiplicationExpression.    (57)
+
+	.  reduce 57 (src line 353)
+
+
+state 41
+	Expression:  DivisionExpression.    (58)
+
+	.  reduce 58 (src line 354)
+
+
+state 42
+	Expression:  PowerExpression.    (59)
+
+	.  reduce 59 (src line 355)
+
+
+state 43
+	Expression:  MapPropertyExpression.    (60)
+
+	.  reduce 60 (src line 356)
+
+
+state 44
+	Expression:  Symbol.    (61)
+
+	.  reduce 61 (src line 357)
+
+
+state 45
+	Expression:  StringLiteral.    (62)
+
+	.  reduce 62 (src line 358)
+
+
+state 46
+	Expression:  Integer.    (63)
+
+	.  reduce 63 (src line 359)
+
+
+state 47
+	Expression:  Float.    (64)
+
+	.  reduce 64 (src line 360)
+
+
+state 48
+	Expression:  Boolean.    (65)
+
+	.  reduce 65 (src line 361)
+
+
+state 49
+	Expression:  Null.    (66)
+
+	.  reduce 66 (src line 362)
+
+
+state 50
+	Expression:  Map.    (67)
+
+	.  reduce 67 (src line 363)
+
+
+state 51
+	Expression:  Array.    (68)
+
+	.  reduce 68 (src line 364)
+
+
+state 52
+	Expression:  FunctionCall.    (69)
+
+	.  reduce 69 (src line 365)
+
+
+state 53
+	Expression:  UnaryExpression.    (70)
+
+	.  reduce 70 (src line 366)
+
+
+state 54
+	Symbol:  Identifier.    (46)
+
+	.  reduce 46 (src line 307)
+
+
+state 55
+	StringLiteral:  STRING_LITERAL.    (73)
+
+	.  reduce 73 (src line 378)
+
+
+state 56
+	Integer:  INTEGER.    (74)
+
+	.  reduce 74 (src line 384)
+
+
+state 57
+	Float:  FLOAT.    (75)
+
+	.  reduce 75 (src line 389)
+
+
+state 58
+	Boolean:  BOOLEAN.    (76)
+
+	.  reduce 76 (src line 394)
+
+
+state 59
+	Null:  NULL.    (77)
+
+	.  reduce 77 (src line 399)
+
+
+state 60
+	Map:  LEFT_BRACE.MapPropertyList RIGHT_BRACE 
+	MapPropertyList: .    (82)
+
+	IDENTIFIER  shift 95
+	.  reduce 82 (src line 423)
+
+	MapPropertyList  goto 93
+	MapProperty  goto 94
+
+state 61
+	Array:  LEFT_BRACKET.Args RIGHT_BRACKET 
+	Args: .    (86)
+
+	INTEGER  shift 56
+	FLOAT  shift 57
+	STRING_LITERAL  shift 55
+	BOOLEAN  shift 58
+	NULL  shift 59
+	IDENTIFIER  shift 63
+	MINUS  shift 62
+	LEFT_PARENTHESIS  shift 38
+	LEFT_BRACKET  shift 61
+	LEFT_BRACE  shift 60
+	.  reduce 86 (src line 441)
+
+	Args  goto 96
+	Arg  goto 67
+	Symbol  goto 44
+	MapPropertyExpression  goto 43
+	AdditiveExpression  goto 39
+	MultiplicationExpression  goto 40
+	DivisionExpression  goto 41
+	PowerExpression  goto 42
+	Expression  goto 68
+	UnaryExpression  goto 53
+	Identifier  goto 54
+	StringLiteral  goto 45
+	Integer  goto 46
+	Float  goto 47
+	Null  goto 49
+	Boolean  goto 48
+	Array  goto 51
+	Map  goto 50
+	FunctionCall  goto 52
+
+state 62
+	UnaryExpression:  MINUS.Expression 
+
+	INTEGER  shift 56
+	FLOAT  shift 57
+	STRING_LITERAL  shift 55
+	BOOLEAN  shift 58
+	NULL  shift 59
+	IDENTIFIER  shift 63
+	MINUS  shift 62
+	LEFT_PARENTHESIS  shift 38
+	LEFT_BRACKET  shift 61
+	LEFT_BRACE  shift 60
+	.  error
+
+	Symbol  goto 44
+	MapPropertyExpression  goto 43
+	AdditiveExpression  goto 39
+	MultiplicationExpression  goto 40
+	DivisionExpression  goto 41
+	PowerExpression  goto 42
+	Expression  goto 97
+	UnaryExpression  goto 53
+	Identifier  goto 54
+	StringLiteral  goto 45
+	Integer  goto 46
+	Float  goto 47
+	Null  goto 49
+	Boolean  goto 48
+	Array  goto 51
+	Map  goto 50
+	FunctionCall  goto 52
+
+state 63
+	Identifier:  IDENTIFIER.    (72)
+
+	.  reduce 72 (src line 373)
+
+
+state 64
+	GotoStatement:  GO TO.Expression 
+
+	INTEGER  shift 56
+	FLOAT  shift 57
+	STRING_LITERAL  shift 55
+	BOOLEAN  shift 58
+	NULL  shift 59
+	IDENTIFIER  shift 63
+	MINUS  shift 62
+	LEFT_PARENTHESIS  shift 38
+	LEFT_BRACKET  shift 61
+	LEFT_BRACE  shift 60
+	.  error
+
+	Symbol  goto 44
+	MapPropertyExpression  goto 43
+	AdditiveExpression  goto 39
+	MultiplicationExpression  goto 40
+	DivisionExpression  goto 41
+	PowerExpression  goto 42
+	Expression  goto 98
+	UnaryExpression  goto 53
+	Identifier  goto 54
+	StringLiteral  goto 45
+	Integer  goto 46
+	Float  goto 47
+	Null  goto 49
+	Boolean  goto 48
+	Array  goto 51
+	Map  goto 50
+	FunctionCall  goto 52
+
+state 65
+	GoSubStatement:  GO SUB.Expression 
+
+	INTEGER  shift 56
+	FLOAT  shift 57
+	STRING_LITERAL  shift 55
+	BOOLEAN  shift 58
+	NULL  shift 59
+	IDENTIFIER  shift 63
+	MINUS  shift 62
+	LEFT_PARENTHESIS  shift 38
+	LEFT_BRACKET  shift 61
+	LEFT_BRACE  shift 60
+	.  error
+
+	Symbol  goto 44
+	MapPropertyExpression  goto 43
+	AdditiveExpression  goto 39
+	MultiplicationExpression  goto 40
+	DivisionExpression  goto 41
+	PowerExpression  goto 42
+	Expression  goto 99
+	UnaryExpression  goto 53
+	Identifier  goto 54
+	StringLiteral  goto 45
+	Integer  goto 46
+	Float  goto 47
+	Null  goto 49
+	Boolean  goto 48
+	Array  goto 51
+	Map  goto 50
+	FunctionCall  goto 52
+
+state 66
+	PrintStatement:  PRINT Args.    (31)
+	Args:  Args.Separator Arg 
+
+	COMMA  shift 101
+	SEMICOLON  shift 102
+	.  reduce 31 (src line 229)
+
+	Separator  goto 100
+
+state 67
+	Args:  Arg.    (87)
+
+	.  reduce 87 (src line 445)
+
+
+state 68
+	FunctionCall:  Expression.LEFT_PARENTHESIS Args RIGHT_PARENTHESIS 
+	AdditiveExpression:  Expression.PLUS Expression 
+	AdditiveExpression:  Expression.MINUS Expression 
+	MultiplicationExpression:  Expression.TIMES Expression 
+	DivisionExpression:  Expression.DIVIDE Expression 
+	PowerExpression:  Expression.CIRCUMFLEX Expression 
+	MapPropertyExpression:  Expression.DOT IDENTIFIER 
+	MapPropertyExpression:  Expression.LEFT_BRACKET Expression RIGHT_BRACKET 
+	Arg:  Expression.    (91)
+
+	DOT  shift 90
+	PLUS  shift 85
+	MINUS  shift 86
+	CIRCUMFLEX  shift 89
+	LEFT_PARENTHESIS  shift 84
+	LEFT_BRACKET  shift 91
+	TIMES  shift 87
+	DIVIDE  shift 88
+	.  reduce 91 (src line 457)
+
+
+state 69
+	AssignmentStatement:  LET Symbol.EQUALS Expression 
+	Expression:  Symbol.    (61)
+
+	EQUALS  shift 103
+	.  reduce 61 (src line 357)
+
+
+state 70
+	AssignmentStatement:  LET FunctionCall.EQUALS Expression 
+	Expression:  FunctionCall.    (69)
+
+	EQUALS  shift 104
+	.  reduce 69 (src line 365)
+
+
+state 71
+	AssignmentStatement:  LET MapPropertyExpression.EQUALS Expression 
+	Expression:  MapPropertyExpression.    (60)
+
+	EQUALS  shift 105
+	.  reduce 60 (src line 356)
+
+
+state 72
+	FunctionCall:  Expression.LEFT_PARENTHESIS Args RIGHT_PARENTHESIS 
+	AdditiveExpression:  Expression.PLUS Expression 
+	AdditiveExpression:  Expression.MINUS Expression 
+	MultiplicationExpression:  Expression.TIMES Expression 
+	DivisionExpression:  Expression.DIVIDE Expression 
+	PowerExpression:  Expression.CIRCUMFLEX Expression 
+	MapPropertyExpression:  Expression.DOT IDENTIFIER 
+	MapPropertyExpression:  Expression.LEFT_BRACKET Expression RIGHT_BRACKET 
+
+	DOT  shift 90
+	PLUS  shift 85
+	MINUS  shift 86
+	CIRCUMFLEX  shift 89
+	LEFT_PARENTHESIS  shift 84
+	LEFT_BRACKET  shift 91
+	TIMES  shift 87
+	DIVIDE  shift 88
+	.  error
+
+
+state 73
+	IfStatement:  IF RelationExpression.THEN Expression 
+
+	THEN  shift 106
+	.  error
+
+
+state 74
+	RelationExpression:  Expression.Comparator Expression 
+	FunctionCall:  Expression.LEFT_PARENTHESIS Args RIGHT_PARENTHESIS 
+	AdditiveExpression:  Expression.PLUS Expression 
+	AdditiveExpression:  Expression.MINUS Expression 
+	MultiplicationExpression:  Expression.TIMES Expression 
+	DivisionExpression:  Expression.DIVIDE Expression 
+	PowerExpression:  Expression.CIRCUMFLEX Expression 
+	MapPropertyExpression:  Expression.DOT IDENTIFIER 
+	MapPropertyExpression:  Expression.LEFT_BRACKET Expression RIGHT_BRACKET 
+
+	DOT  shift 90
+	PLUS  shift 85
+	MINUS  shift 86
+	CIRCUMFLEX  shift 89
+	EQUALS  shift 108
+	LESS_THAN  shift 110
+	GREATER_THAN  shift 111
+	NOT_EQUALS  shift 109
+	LEFT_PARENTHESIS  shift 84
+	LEFT_BRACKET  shift 91
+	TIMES  shift 87
+	DIVIDE  shift 88
+	.  error
+
+	Comparator  goto 107
+
+state 75
+	DimStatement:  DIM ArrayDefinitions.    (24)
+
+	.  reduce 24 (src line 187)
+
+
+state 76
+	ArrayDefinitions:  ArrayDefinition.    (48)
+
+	.  reduce 48 (src line 314)
+
+
+state 77
+	ArrayDefinition:  Identifier.LEFT_PARENTHESIS Args RIGHT_PARENTHESIS 
+
+	LEFT_PARENTHESIS  shift 112
+	.  error
+
+
+state 78
+	ForStatement:  FOR Identifier.EQUALS Expression TO Expression 
+	ForStatement:  FOR Identifier.EQUALS Expression TO Expression STEP Expression 
+
+	EQUALS  shift 113
+	.  error
+
+
+state 79
+	NextStatement:  NEXT Identifier.    (38)
+
+	.  reduce 38 (src line 270)
+
+
+state 80
+	DefStatement:  DEF Identifier.EQUALS Expression 
+	DefStatement:  DEF Identifier.LEFT_PARENTHESIS Identifier RIGHT_PARENTHESIS EQUALS Expression 
+
+	EQUALS  shift 114
+	LEFT_PARENTHESIS  shift 115
+	.  error
+
+
+state 81
+	RemarkStatement:  REM STRING_LITERAL.    (22)
+
+	.  reduce 22 (src line 177)
+
+
+state 82
+	OperationStatement:  IDENTIFIER Args.    (21)
+	Args:  Args.Separator Arg 
+
+	COMMA  shift 101
+	SEMICOLON  shift 102
+	.  reduce 21 (src line 172)
+
+	Separator  goto 100
+
+state 83
+	Statements:  Statements COLON Statement.    (7)
+
+	.  reduce 7 (src line 152)
+
+
+state 84
+	FunctionCall:  Expression LEFT_PARENTHESIS.Args RIGHT_PARENTHESIS 
+	Args: .    (86)
+
+	INTEGER  shift 56
+	FLOAT  shift 57
+	STRING_LITERAL  shift 55
+	BOOLEAN  shift 58
+	NULL  shift 59
+	IDENTIFIER  shift 63
+	MINUS  shift 62
+	LEFT_PARENTHESIS  shift 38
+	LEFT_BRACKET  shift 61
+	LEFT_BRACE  shift 60
+	.  reduce 86 (src line 441)
+
+	Args  goto 116
+	Arg  goto 67
+	Symbol  goto 44
+	MapPropertyExpression  goto 43
+	AdditiveExpression  goto 39
+	MultiplicationExpression  goto 40
+	DivisionExpression  goto 41
+	PowerExpression  goto 42
+	Expression  goto 68
+	UnaryExpression  goto 53
+	Identifier  goto 54
+	StringLiteral  goto 45
+	Integer  goto 46
+	Float  goto 47
+	Null  goto 49
+	Boolean  goto 48
+	Array  goto 51
+	Map  goto 50
+	FunctionCall  goto 52
+
+state 85
+	AdditiveExpression:  Expression PLUS.Expression 
+
+	INTEGER  shift 56
+	FLOAT  shift 57
+	STRING_LITERAL  shift 55
+	BOOLEAN  shift 58
+	NULL  shift 59
+	IDENTIFIER  shift 63
+	MINUS  shift 62
+	LEFT_PARENTHESIS  shift 38
+	LEFT_BRACKET  shift 61
+	LEFT_BRACE  shift 60
+	.  error
+
+	Symbol  goto 44
+	MapPropertyExpression  goto 43
+	AdditiveExpression  goto 39
+	MultiplicationExpression  goto 40
+	DivisionExpression  goto 41
+	PowerExpression  goto 42
+	Expression  goto 117
+	UnaryExpression  goto 53
+	Identifier  goto 54
+	StringLiteral  goto 45
+	Integer  goto 46
+	Float  goto 47
+	Null  goto 49
+	Boolean  goto 48
+	Array  goto 51
+	Map  goto 50
+	FunctionCall  goto 52
+
+state 86
+	AdditiveExpression:  Expression MINUS.Expression 
+
+	INTEGER  shift 56
+	FLOAT  shift 57
+	STRING_LITERAL  shift 55
+	BOOLEAN  shift 58
+	NULL  shift 59
+	IDENTIFIER  shift 63
+	MINUS  shift 62
+	LEFT_PARENTHESIS  shift 38
+	LEFT_BRACKET  shift 61
+	LEFT_BRACE  shift 60
+	.  error
+
+	Symbol  goto 44
+	MapPropertyExpression  goto 43
+	AdditiveExpression  goto 39
+	MultiplicationExpression  goto 40
+	DivisionExpression  goto 41
+	PowerExpression  goto 42
+	Expression  goto 118
+	UnaryExpression  goto 53
+	Identifier  goto 54
+	StringLiteral  goto 45
+	Integer  goto 46
+	Float  goto 47
+	Null  goto 49
+	Boolean  goto 48
+	Array  goto 51
+	Map  goto 50
+	FunctionCall  goto 52
+
+state 87
+	MultiplicationExpression:  Expression TIMES.Expression 
+
+	INTEGER  shift 56
+	FLOAT  shift 57
+	STRING_LITERAL  shift 55
+	BOOLEAN  shift 58
+	NULL  shift 59
+	IDENTIFIER  shift 63
+	MINUS  shift 62
+	LEFT_PARENTHESIS  shift 38
+	LEFT_BRACKET  shift 61
+	LEFT_BRACE  shift 60
+	.  error
+
+	Symbol  goto 44
+	MapPropertyExpression  goto 43
+	AdditiveExpression  goto 39
+	MultiplicationExpression  goto 40
+	DivisionExpression  goto 41
+	PowerExpression  goto 42
+	Expression  goto 119
+	UnaryExpression  goto 53
+	Identifier  goto 54
+	StringLiteral  goto 45
+	Integer  goto 46
+	Float  goto 47
+	Null  goto 49
+	Boolean  goto 48
+	Array  goto 51
+	Map  goto 50
+	FunctionCall  goto 52
+
+state 88
+	DivisionExpression:  Expression DIVIDE.Expression 
+
+	INTEGER  shift 56
+	FLOAT  shift 57
+	STRING_LITERAL  shift 55
+	BOOLEAN  shift 58
+	NULL  shift 59
+	IDENTIFIER  shift 63
+	MINUS  shift 62
+	LEFT_PARENTHESIS  shift 38
+	LEFT_BRACKET  shift 61
+	LEFT_BRACE  shift 60
+	.  error
+
+	Symbol  goto 44
+	MapPropertyExpression  goto 43
+	AdditiveExpression  goto 39
+	MultiplicationExpression  goto 40
+	DivisionExpression  goto 41
+	PowerExpression  goto 42
+	Expression  goto 120
+	UnaryExpression  goto 53
+	Identifier  goto 54
+	StringLiteral  goto 45
+	Integer  goto 46
+	Float  goto 47
+	Null  goto 49
+	Boolean  goto 48
+	Array  goto 51
+	Map  goto 50
+	FunctionCall  goto 52
+
+state 89
+	PowerExpression:  Expression CIRCUMFLEX.Expression 
+
+	INTEGER  shift 56
+	FLOAT  shift 57
+	STRING_LITERAL  shift 55
+	BOOLEAN  shift 58
+	NULL  shift 59
+	IDENTIFIER  shift 63
+	MINUS  shift 62
+	LEFT_PARENTHESIS  shift 38
+	LEFT_BRACKET  shift 61
+	LEFT_BRACE  shift 60
+	.  error
+
+	Symbol  goto 44
+	MapPropertyExpression  goto 43
+	AdditiveExpression  goto 39
+	MultiplicationExpression  goto 40
+	DivisionExpression  goto 41
+	PowerExpression  goto 42
+	Expression  goto 121
+	UnaryExpression  goto 53
+	Identifier  goto 54
+	StringLiteral  goto 45
+	Integer  goto 46
+	Float  goto 47
+	Null  goto 49
+	Boolean  goto 48
+	Array  goto 51
+	Map  goto 50
+	FunctionCall  goto 52
+
+state 90
+	MapPropertyExpression:  Expression DOT.IDENTIFIER 
+
+	IDENTIFIER  shift 122
+	.  error
+
+
+state 91
+	MapPropertyExpression:  Expression LEFT_BRACKET.Expression RIGHT_BRACKET 
+
+	INTEGER  shift 56
+	FLOAT  shift 57
+	STRING_LITERAL  shift 55
+	BOOLEAN  shift 58
+	NULL  shift 59
+	IDENTIFIER  shift 63
+	MINUS  shift 62
+	LEFT_PARENTHESIS  shift 38
+	LEFT_BRACKET  shift 61
+	LEFT_BRACE  shift 60
+	.  error
+
+	Symbol  goto 44
+	MapPropertyExpression  goto 43
+	AdditiveExpression  goto 39
+	MultiplicationExpression  goto 40
+	DivisionExpression  goto 41
+	PowerExpression  goto 42
+	Expression  goto 123
+	UnaryExpression  goto 53
+	Identifier  goto 54
+	StringLiteral  goto 45
+	Integer  goto 46
+	Float  goto 47
+	Null  goto 49
+	Boolean  goto 48
+	Array  goto 51
+	Map  goto 50
+	FunctionCall  goto 52
+
+state 92
+	FunctionCall:  Expression.LEFT_PARENTHESIS Args RIGHT_PARENTHESIS 
+	AdditiveExpression:  Expression.PLUS Expression 
+	AdditiveExpression:  Expression.MINUS Expression 
+	MultiplicationExpression:  Expression.TIMES Expression 
+	DivisionExpression:  Expression.DIVIDE Expression 
+	PowerExpression:  Expression.CIRCUMFLEX Expression 
+	Expression:  LEFT_PARENTHESIS Expression.RIGHT_PARENTHESIS 
+	MapPropertyExpression:  Expression.DOT IDENTIFIER 
+	MapPropertyExpression:  Expression.LEFT_BRACKET Expression RIGHT_BRACKET 
+
+	DOT  shift 90
+	PLUS  shift 85
+	MINUS  shift 86
+	CIRCUMFLEX  shift 89
+	LEFT_PARENTHESIS  shift 84
+	LEFT_BRACKET  shift 91
+	RIGHT_PARENTHESIS  shift 124
+	TIMES  shift 87
+	DIVIDE  shift 88
+	.  error
+
+
+state 93
+	Map:  LEFT_BRACE MapPropertyList.RIGHT_BRACE 
+	MapPropertyList:  MapPropertyList.COMMA MapProperty 
+
+	COMMA  shift 126
+	RIGHT_BRACE  shift 125
+	.  error
+
+
+state 94
+	MapPropertyList:  MapProperty.    (83)
+
+	.  reduce 83 (src line 427)
+
+
+state 95
+	MapProperty:  IDENTIFIER.COLON Expression 
+
+	COLON  shift 127
+	.  error
+
+
+state 96
+	Array:  LEFT_BRACKET Args.RIGHT_BRACKET 
+	Args:  Args.Separator Arg 
+
+	COMMA  shift 101
+	SEMICOLON  shift 102
+	RIGHT_BRACKET  shift 128
+	.  error
+
+	Separator  goto 100
+
+state 97
+	FunctionCall:  Expression.LEFT_PARENTHESIS Args RIGHT_PARENTHESIS 
+	AdditiveExpression:  Expression.PLUS Expression 
+	AdditiveExpression:  Expression.MINUS Expression 
+	MultiplicationExpression:  Expression.TIMES Expression 
+	DivisionExpression:  Expression.DIVIDE Expression 
+	PowerExpression:  Expression.CIRCUMFLEX Expression 
+	UnaryExpression:  MINUS Expression.    (71)
+	MapPropertyExpression:  Expression.DOT IDENTIFIER 
+	MapPropertyExpression:  Expression.LEFT_BRACKET Expression RIGHT_BRACKET 
+
+	DOT  shift 90
+	CIRCUMFLEX  shift 89
+	LEFT_PARENTHESIS  shift 84
+	LEFT_BRACKET  shift 91
+	TIMES  shift 87
+	DIVIDE  shift 88
+	.  reduce 71 (src line 368)
+
+
+state 98
+	GotoStatement:  GO TO Expression.    (28)
+	FunctionCall:  Expression.LEFT_PARENTHESIS Args RIGHT_PARENTHESIS 
+	AdditiveExpression:  Expression.PLUS Expression 
+	AdditiveExpression:  Expression.MINUS Expression 
+	MultiplicationExpression:  Expression.TIMES Expression 
+	DivisionExpression:  Expression.DIVIDE Expression 
+	PowerExpression:  Expression.CIRCUMFLEX Expression 
+	MapPropertyExpression:  Expression.DOT IDENTIFIER 
+	MapPropertyExpression:  Expression.LEFT_BRACKET Expression RIGHT_BRACKET 
+
+	DOT  shift 90
+	PLUS  shift 85
+	MINUS  shift 86
+	CIRCUMFLEX  shift 89
+	LEFT_PARENTHESIS  shift 84
+	LEFT_BRACKET  shift 91
+	TIMES  shift 87
+	DIVIDE  shift 88
+	.  reduce 28 (src line 214)
+
+
+state 99
+	GoSubStatement:  GO SUB Expression.    (29)
+	FunctionCall:  Expression.LEFT_PARENTHESIS Args RIGHT_PARENTHESIS 
+	AdditiveExpression:  Expression.PLUS Expression 
+	AdditiveExpression:  Expression.MINUS Expression 
+	MultiplicationExpression:  Expression.TIMES Expression 
+	DivisionExpression:  Expression.DIVIDE Expression 
+	PowerExpression:  Expression.CIRCUMFLEX Expression 
+	MapPropertyExpression:  Expression.DOT IDENTIFIER 
+	MapPropertyExpression:  Expression.LEFT_BRACKET Expression RIGHT_BRACKET 
+
+	DOT  shift 90
+	PLUS  shift 85
+	MINUS  shift 86
+	CIRCUMFLEX  shift 89
+	LEFT_PARENTHESIS  shift 84
+	LEFT_BRACKET  shift 91
+	TIMES  shift 87
+	DIVIDE  shift 88
+	.  reduce 29 (src line 219)
+
+
+state 100
+	Args:  Args Separator.Arg 
+
+	INTEGER  shift 56
+	FLOAT  shift 57
+	STRING_LITERAL  shift 55
+	BOOLEAN  shift 58
+	NULL  shift 59
+	IDENTIFIER  shift 63
+	MINUS  shift 62
+	LEFT_PARENTHESIS  shift 38
+	LEFT_BRACKET  shift 61
+	LEFT_BRACE  shift 60
+	.  error
+
+	Arg  goto 129
+	Symbol  goto 44
+	MapPropertyExpression  goto 43
+	AdditiveExpression  goto 39
+	MultiplicationExpression  goto 40
+	DivisionExpression  goto 41
+	PowerExpression  goto 42
+	Expression  goto 68
+	UnaryExpression  goto 53
+	Identifier  goto 54
+	StringLiteral  goto 45
+	Integer  goto 46
+	Float  goto 47
+	Null  goto 49
+	Boolean  goto 48
+	Array  goto 51
+	Map  goto 50
+	FunctionCall  goto 52
+
+state 101
+	Separator:  COMMA.    (89)
+
+	.  reduce 89 (src line 454)
+
+
+state 102
+	Separator:  SEMICOLON.    (90)
+
+	.  reduce 90 (src line 455)
+
+
+state 103
+	AssignmentStatement:  LET Symbol EQUALS.Expression 
+
+	INTEGER  shift 56
+	FLOAT  shift 57
+	STRING_LITERAL  shift 55
+	BOOLEAN  shift 58
+	NULL  shift 59
+	IDENTIFIER  shift 63
+	MINUS  shift 62
+	LEFT_PARENTHESIS  shift 38
+	LEFT_BRACKET  shift 61
+	LEFT_BRACE  shift 60
+	.  error
+
+	Symbol  goto 44
+	MapPropertyExpression  goto 43
+	AdditiveExpression  goto 39
+	MultiplicationExpression  goto 40
+	DivisionExpression  goto 41
+	PowerExpression  goto 42
+	Expression  goto 130
+	UnaryExpression  goto 53
+	Identifier  goto 54
+	StringLiteral  goto 45
+	Integer  goto 46
+	Float  goto 47
+	Null  goto 49
+	Boolean  goto 48
+	Array  goto 51
+	Map  goto 50
+	FunctionCall  goto 52
+
+state 104
+	AssignmentStatement:  LET FunctionCall EQUALS.Expression 
+
+	INTEGER  shift 56
+	FLOAT  shift 57
+	STRING_LITERAL  shift 55
+	BOOLEAN  shift 58
+	NULL  shift 59
+	IDENTIFIER  shift 63
+	MINUS  shift 62
+	LEFT_PARENTHESIS  shift 38
+	LEFT_BRACKET  shift 61
+	LEFT_BRACE  shift 60
+	.  error
+
+	Symbol  goto 44
+	MapPropertyExpression  goto 43
+	AdditiveExpression  goto 39
+	MultiplicationExpression  goto 40
+	DivisionExpression  goto 41
+	PowerExpression  goto 42
+	Expression  goto 131
+	UnaryExpression  goto 53
+	Identifier  goto 54
+	StringLiteral  goto 45
+	Integer  goto 46
+	Float  goto 47
+	Null  goto 49
+	Boolean  goto 48
+	Array  goto 51
+	Map  goto 50
+	FunctionCall  goto 52
+
+state 105
+	AssignmentStatement:  LET MapPropertyExpression EQUALS.Expression 
+
+	INTEGER  shift 56
+	FLOAT  shift 57
+	STRING_LITERAL  shift 55
+	BOOLEAN  shift 58
+	NULL  shift 59
+	IDENTIFIER  shift 63
+	MINUS  shift 62
+	LEFT_PARENTHESIS  shift 38
+	LEFT_BRACKET  shift 61
+	LEFT_BRACE  shift 60
+	.  error
+
+	Symbol  goto 44
+	MapPropertyExpression  goto 43
+	AdditiveExpression  goto 39
+	MultiplicationExpression  goto 40
+	DivisionExpression  goto 41
+	PowerExpression  goto 42
+	Expression  goto 132
+	UnaryExpression  goto 53
+	Identifier  goto 54
+	StringLiteral  goto 45
+	Integer  goto 46
+	Float  goto 47
+	Null  goto 49
+	Boolean  goto 48
+	Array  goto 51
+	Map  goto 50
+	FunctionCall  goto 52
+
+state 106
+	IfStatement:  IF RelationExpression THEN.Expression 
+
+	INTEGER  shift 56
+	FLOAT  shift 57
+	STRING_LITERAL  shift 55
+	BOOLEAN  shift 58
+	NULL  shift 59
+	IDENTIFIER  shift 63
+	MINUS  shift 62
+	LEFT_PARENTHESIS  shift 38
+	LEFT_BRACKET  shift 61
+	LEFT_BRACE  shift 60
+	.  error
+
+	Symbol  goto 44
+	MapPropertyExpression  goto 43
+	AdditiveExpression  goto 39
+	MultiplicationExpression  goto 40
+	DivisionExpression  goto 41
+	PowerExpression  goto 42
+	Expression  goto 133
+	UnaryExpression  goto 53
+	Identifier  goto 54
+	StringLiteral  goto 45
+	Integer  goto 46
+	Float  goto 47
+	Null  goto 49
+	Boolean  goto 48
+	Array  goto 51
+	Map  goto 50
+	FunctionCall  goto 52
+
+state 107
+	RelationExpression:  Expression Comparator.Expression 
+
+	INTEGER  shift 56
+	FLOAT  shift 57
+	STRING_LITERAL  shift 55
+	BOOLEAN  shift 58
+	NULL  shift 59
+	IDENTIFIER  shift 63
+	MINUS  shift 62
+	LEFT_PARENTHESIS  shift 38
+	LEFT_BRACKET  shift 61
+	LEFT_BRACE  shift 60
+	.  error
+
+	Symbol  goto 44
+	MapPropertyExpression  goto 43
+	AdditiveExpression  goto 39
+	MultiplicationExpression  goto 40
+	DivisionExpression  goto 41
+	PowerExpression  goto 42
+	Expression  goto 134
+	UnaryExpression  goto 53
+	Identifier  goto 54
+	StringLiteral  goto 45
+	Integer  goto 46
+	Float  goto 47
+	Null  goto 49
+	Boolean  goto 48
+	Array  goto 51
+	Map  goto 50
+	FunctionCall  goto 52
+
+state 108
+	Comparator:  EQUALS.    (40)
+
+	.  reduce 40 (src line 282)
+
+
+state 109
+	Comparator:  NOT_EQUALS.    (41)
+
+	.  reduce 41 (src line 286)
+
+
+state 110
+	Comparator:  LESS_THAN.    (42)
+	Comparator:  LESS_THAN.EQUALS 
+
+	EQUALS  shift 135
+	.  reduce 42 (src line 290)
+
+
+state 111
+	Comparator:  GREATER_THAN.    (44)
+	Comparator:  GREATER_THAN.EQUALS 
+
+	EQUALS  shift 136
+	.  reduce 44 (src line 298)
+
+
+state 112
+	ArrayDefinition:  Identifier LEFT_PARENTHESIS.Args RIGHT_PARENTHESIS 
+	Args: .    (86)
+
+	INTEGER  shift 56
+	FLOAT  shift 57
+	STRING_LITERAL  shift 55
+	BOOLEAN  shift 58
+	NULL  shift 59
+	IDENTIFIER  shift 63
+	MINUS  shift 62
+	LEFT_PARENTHESIS  shift 38
+	LEFT_BRACKET  shift 61
+	LEFT_BRACE  shift 60
+	.  reduce 86 (src line 441)
+
+	Args  goto 137
+	Arg  goto 67
+	Symbol  goto 44
+	MapPropertyExpression  goto 43
+	AdditiveExpression  goto 39
+	MultiplicationExpression  goto 40
+	DivisionExpression  goto 41
+	PowerExpression  goto 42
+	Expression  goto 68
+	UnaryExpression  goto 53
+	Identifier  goto 54
+	StringLiteral  goto 45
+	Integer  goto 46
+	Float  goto 47
+	Null  goto 49
+	Boolean  goto 48
+	Array  goto 51
+	Map  goto 50
+	FunctionCall  goto 52
+
+state 113
+	ForStatement:  FOR Identifier EQUALS.Expression TO Expression 
+	ForStatement:  FOR Identifier EQUALS.Expression TO Expression STEP Expression 
+
+	INTEGER  shift 56
+	FLOAT  shift 57
+	STRING_LITERAL  shift 55
+	BOOLEAN  shift 58
+	NULL  shift 59
+	IDENTIFIER  shift 63
+	MINUS  shift 62
+	LEFT_PARENTHESIS  shift 38
+	LEFT_BRACKET  shift 61
+	LEFT_BRACE  shift 60
+	.  error
+
+	Symbol  goto 44
+	MapPropertyExpression  goto 43
+	AdditiveExpression  goto 39
+	MultiplicationExpression  goto 40
+	DivisionExpression  goto 41
+	PowerExpression  goto 42
+	Expression  goto 138
+	UnaryExpression  goto 53
+	Identifier  goto 54
+	StringLiteral  goto 45
+	Integer  goto 46
+	Float  goto 47
+	Null  goto 49
+	Boolean  goto 48
+	Array  goto 51
+	Map  goto 50
+	FunctionCall  goto 52
+
+state 114
+	DefStatement:  DEF Identifier EQUALS.Expression 
+
+	INTEGER  shift 56
+	FLOAT  shift 57
+	STRING_LITERAL  shift 55
+	BOOLEAN  shift 58
+	NULL  shift 59
+	IDENTIFIER  shift 63
+	MINUS  shift 62
+	LEFT_PARENTHESIS  shift 38
+	LEFT_BRACKET  shift 61
+	LEFT_BRACE  shift 60
+	.  error
+
+	Symbol  goto 44
+	MapPropertyExpression  goto 43
+	AdditiveExpression  goto 39
+	MultiplicationExpression  goto 40
+	DivisionExpression  goto 41
+	PowerExpression  goto 42
+	Expression  goto 139
+	UnaryExpression  goto 53
+	Identifier  goto 54
+	StringLiteral  goto 45
+	Integer  goto 46
+	Float  goto 47
+	Null  goto 49
+	Boolean  goto 48
+	Array  goto 51
+	Map  goto 50
+	FunctionCall  goto 52
+
+state 115
+	DefStatement:  DEF Identifier LEFT_PARENTHESIS.Identifier RIGHT_PARENTHESIS EQUALS Expression 
+
+	IDENTIFIER  shift 63
+	.  error
+
+	Identifier  goto 140
+
+state 116
+	FunctionCall:  Expression LEFT_PARENTHESIS Args.RIGHT_PARENTHESIS 
+	Args:  Args.Separator Arg 
+
+	COMMA  shift 101
+	SEMICOLON  shift 102
+	RIGHT_PARENTHESIS  shift 141
+	.  error
+
+	Separator  goto 100
+
+state 117
+	FunctionCall:  Expression.LEFT_PARENTHESIS Args RIGHT_PARENTHESIS 
+	AdditiveExpression:  Expression.PLUS Expression 
+	AdditiveExpression:  Expression PLUS Expression.    (50)
+	AdditiveExpression:  Expression.MINUS Expression 
+	MultiplicationExpression:  Expression.TIMES Expression 
+	DivisionExpression:  Expression.DIVIDE Expression 
+	PowerExpression:  Expression.CIRCUMFLEX Expression 
+	MapPropertyExpression:  Expression.DOT IDENTIFIER 
+	MapPropertyExpression:  Expression.LEFT_BRACKET Expression RIGHT_BRACKET 
+
+	DOT  shift 90
+	CIRCUMFLEX  shift 89
+	LEFT_PARENTHESIS  shift 84
+	LEFT_BRACKET  shift 91
+	TIMES  shift 87
+	DIVIDE  shift 88
+	.  reduce 50 (src line 324)
+
+
+state 118
+	FunctionCall:  Expression.LEFT_PARENTHESIS Args RIGHT_PARENTHESIS 
+	AdditiveExpression:  Expression.PLUS Expression 
+	AdditiveExpression:  Expression.MINUS Expression 
+	AdditiveExpression:  Expression MINUS Expression.    (51)
+	MultiplicationExpression:  Expression.TIMES Expression 
+	DivisionExpression:  Expression.DIVIDE Expression 
+	PowerExpression:  Expression.CIRCUMFLEX Expression 
+	MapPropertyExpression:  Expression.DOT IDENTIFIER 
+	MapPropertyExpression:  Expression.LEFT_BRACKET Expression RIGHT_BRACKET 
+
+	DOT  shift 90
+	CIRCUMFLEX  shift 89
+	LEFT_PARENTHESIS  shift 84
+	LEFT_BRACKET  shift 91
+	TIMES  shift 87
+	DIVIDE  shift 88
+	.  reduce 51 (src line 328)
+
+
+state 119
+	FunctionCall:  Expression.LEFT_PARENTHESIS Args RIGHT_PARENTHESIS 
+	AdditiveExpression:  Expression.PLUS Expression 
+	AdditiveExpression:  Expression.MINUS Expression 
+	MultiplicationExpression:  Expression.TIMES Expression 
+	MultiplicationExpression:  Expression TIMES Expression.    (52)
+	DivisionExpression:  Expression.DIVIDE Expression 
+	PowerExpression:  Expression.CIRCUMFLEX Expression 
+	MapPropertyExpression:  Expression.DOT IDENTIFIER 
+	MapPropertyExpression:  Expression.LEFT_BRACKET Expression RIGHT_BRACKET 
+
+	DOT  shift 90
+	CIRCUMFLEX  shift 89
+	LEFT_PARENTHESIS  shift 84
+	LEFT_BRACKET  shift 91
+	.  reduce 52 (src line 333)
+
+
+state 120
+	FunctionCall:  Expression.LEFT_PARENTHESIS Args RIGHT_PARENTHESIS 
+	AdditiveExpression:  Expression.PLUS Expression 
+	AdditiveExpression:  Expression.MINUS Expression 
+	MultiplicationExpression:  Expression.TIMES Expression 
+	DivisionExpression:  Expression.DIVIDE Expression 
+	DivisionExpression:  Expression DIVIDE Expression.    (53)
+	PowerExpression:  Expression.CIRCUMFLEX Expression 
+	MapPropertyExpression:  Expression.DOT IDENTIFIER 
+	MapPropertyExpression:  Expression.LEFT_BRACKET Expression RIGHT_BRACKET 
+
+	DOT  shift 90
+	CIRCUMFLEX  shift 89
+	LEFT_PARENTHESIS  shift 84
+	LEFT_BRACKET  shift 91
+	.  reduce 53 (src line 338)
+
+
+state 121
+	FunctionCall:  Expression.LEFT_PARENTHESIS Args RIGHT_PARENTHESIS 
+	AdditiveExpression:  Expression.PLUS Expression 
+	AdditiveExpression:  Expression.MINUS Expression 
+	MultiplicationExpression:  Expression.TIMES Expression 
+	DivisionExpression:  Expression.DIVIDE Expression 
+	PowerExpression:  Expression.CIRCUMFLEX Expression 
+	PowerExpression:  Expression CIRCUMFLEX Expression.    (54)
+	MapPropertyExpression:  Expression.DOT IDENTIFIER 
+	MapPropertyExpression:  Expression.LEFT_BRACKET Expression RIGHT_BRACKET 
+
+	DOT  shift 90
+	CIRCUMFLEX  shift 89
+	LEFT_PARENTHESIS  shift 84
+	LEFT_BRACKET  shift 91
+	.  reduce 54 (src line 343)
+
+
+state 122
+	MapPropertyExpression:  Expression DOT IDENTIFIER.    (80)
+
+	.  reduce 80 (src line 414)
+
+
+state 123
+	FunctionCall:  Expression.LEFT_PARENTHESIS Args RIGHT_PARENTHESIS 
+	AdditiveExpression:  Expression.PLUS Expression 
+	AdditiveExpression:  Expression.MINUS Expression 
+	MultiplicationExpression:  Expression.TIMES Expression 
+	DivisionExpression:  Expression.DIVIDE Expression 
+	PowerExpression:  Expression.CIRCUMFLEX Expression 
+	MapPropertyExpression:  Expression.DOT IDENTIFIER 
+	MapPropertyExpression:  Expression.LEFT_BRACKET Expression RIGHT_BRACKET 
+	MapPropertyExpression:  Expression LEFT_BRACKET Expression.RIGHT_BRACKET 
+
+	DOT  shift 90
+	PLUS  shift 85
+	MINUS  shift 86
+	CIRCUMFLEX  shift 89
+	LEFT_PARENTHESIS  shift 84
+	LEFT_BRACKET  shift 91
+	RIGHT_BRACKET  shift 142
+	TIMES  shift 87
+	DIVIDE  shift 88
+	.  error
+
+
+state 124
+	Expression:  LEFT_PARENTHESIS Expression RIGHT_PARENTHESIS.    (55)
+
+	.  reduce 55 (src line 348)
+
+
+state 125
+	Map:  LEFT_BRACE MapPropertyList RIGHT_BRACE.    (79)
+
+	.  reduce 79 (src line 409)
+
+
+state 126
+	MapPropertyList:  MapPropertyList COMMA.MapProperty 
+
+	IDENTIFIER  shift 95
+	.  error
+
+	MapProperty  goto 143
+
+state 127
+	MapProperty:  IDENTIFIER COLON.Expression 
+
+	INTEGER  shift 56
+	FLOAT  shift 57
+	STRING_LITERAL  shift 55
+	BOOLEAN  shift 58
+	NULL  shift 59
+	IDENTIFIER  shift 63
+	MINUS  shift 62
+	LEFT_PARENTHESIS  shift 38
+	LEFT_BRACKET  shift 61
+	LEFT_BRACE  shift 60
+	.  error
+
+	Symbol  goto 44
+	MapPropertyExpression  goto 43
+	AdditiveExpression  goto 39
+	MultiplicationExpression  goto 40
+	DivisionExpression  goto 41
+	PowerExpression  goto 42
+	Expression  goto 144
+	UnaryExpression  goto 53
+	Identifier  goto 54
+	StringLiteral  goto 45
+	Integer  goto 46
+	Float  goto 47
+	Null  goto 49
+	Boolean  goto 48
+	Array  goto 51
+	Map  goto 50
+	FunctionCall  goto 52
+
+state 128
+	Array:  LEFT_BRACKET Args RIGHT_BRACKET.    (78)
+
+	.  reduce 78 (src line 404)
+
+
+state 129
+	Args:  Args Separator Arg.    (88)
+
+	.  reduce 88 (src line 449)
+
+
+state 130
+	AssignmentStatement:  LET Symbol EQUALS Expression.    (32)
+	FunctionCall:  Expression.LEFT_PARENTHESIS Args RIGHT_PARENTHESIS 
+	AdditiveExpression:  Expression.PLUS Expression 
+	AdditiveExpression:  Expression.MINUS Expression 
+	MultiplicationExpression:  Expression.TIMES Expression 
+	DivisionExpression:  Expression.DIVIDE Expression 
+	PowerExpression:  Expression.CIRCUMFLEX Expression 
+	MapPropertyExpression:  Expression.DOT IDENTIFIER 
+	MapPropertyExpression:  Expression.LEFT_BRACKET Expression RIGHT_BRACKET 
+
+	DOT  shift 90
+	PLUS  shift 85
+	MINUS  shift 86
+	CIRCUMFLEX  shift 89
+	LEFT_PARENTHESIS  shift 84
+	LEFT_BRACKET  shift 91
+	TIMES  shift 87
+	DIVIDE  shift 88
+	.  reduce 32 (src line 234)
+
+
+state 131
+	AssignmentStatement:  LET FunctionCall EQUALS Expression.    (33)
+	FunctionCall:  Expression.LEFT_PARENTHESIS Args RIGHT_PARENTHESIS 
+	AdditiveExpression:  Expression.PLUS Expression 
+	AdditiveExpression:  Expression.MINUS Expression 
+	MultiplicationExpression:  Expression.TIMES Expression 
+	DivisionExpression:  Expression.DIVIDE Expression 
+	PowerExpression:  Expression.CIRCUMFLEX Expression 
+	MapPropertyExpression:  Expression.DOT IDENTIFIER 
+	MapPropertyExpression:  Expression.LEFT_BRACKET Expression RIGHT_BRACKET 
+
+	DOT  shift 90
+	PLUS  shift 85
+	MINUS  shift 86
+	CIRCUMFLEX  shift 89
+	LEFT_PARENTHESIS  shift 84
+	LEFT_BRACKET  shift 91
+	TIMES  shift 87
+	DIVIDE  shift 88
+	.  reduce 33 (src line 238)
+
+
+state 132
+	AssignmentStatement:  LET MapPropertyExpression EQUALS Expression.    (34)
+	FunctionCall:  Expression.LEFT_PARENTHESIS Args RIGHT_PARENTHESIS 
+	AdditiveExpression:  Expression.PLUS Expression 
+	AdditiveExpression:  Expression.MINUS Expression 
+	MultiplicationExpression:  Expression.TIMES Expression 
+	DivisionExpression:  Expression.DIVIDE Expression 
+	PowerExpression:  Expression.CIRCUMFLEX Expression 
+	MapPropertyExpression:  Expression.DOT IDENTIFIER 
+	MapPropertyExpression:  Expression.LEFT_BRACKET Expression RIGHT_BRACKET 
+
+	DOT  shift 90
+	PLUS  shift 85
+	MINUS  shift 86
+	CIRCUMFLEX  shift 89
+	LEFT_PARENTHESIS  shift 84
+	LEFT_BRACKET  shift 91
+	TIMES  shift 87
+	DIVIDE  shift 88
+	.  reduce 34 (src line 242)
+
+
+state 133
+	IfStatement:  IF RelationExpression THEN Expression.    (35)
+	FunctionCall:  Expression.LEFT_PARENTHESIS Args RIGHT_PARENTHESIS 
+	AdditiveExpression:  Expression.PLUS Expression 
+	AdditiveExpression:  Expression.MINUS Expression 
+	MultiplicationExpression:  Expression.TIMES Expression 
+	DivisionExpression:  Expression.DIVIDE Expression 
+	PowerExpression:  Expression.CIRCUMFLEX Expression 
+	MapPropertyExpression:  Expression.DOT IDENTIFIER 
+	MapPropertyExpression:  Expression.LEFT_BRACKET Expression RIGHT_BRACKET 
+
+	DOT  shift 90
+	PLUS  shift 85
+	MINUS  shift 86
+	CIRCUMFLEX  shift 89
+	LEFT_PARENTHESIS  shift 84
+	LEFT_BRACKET  shift 91
+	TIMES  shift 87
+	DIVIDE  shift 88
+	.  reduce 35 (src line 247)
+
+
+state 134
+	RelationExpression:  Expression Comparator Expression.    (39)
+	FunctionCall:  Expression.LEFT_PARENTHESIS Args RIGHT_PARENTHESIS 
+	AdditiveExpression:  Expression.PLUS Expression 
+	AdditiveExpression:  Expression.MINUS Expression 
+	MultiplicationExpression:  Expression.TIMES Expression 
+	DivisionExpression:  Expression.DIVIDE Expression 
+	PowerExpression:  Expression.CIRCUMFLEX Expression 
+	MapPropertyExpression:  Expression.DOT IDENTIFIER 
+	MapPropertyExpression:  Expression.LEFT_BRACKET Expression RIGHT_BRACKET 
+
+	DOT  shift 90
+	PLUS  shift 85
+	MINUS  shift 86
+	CIRCUMFLEX  shift 89
+	LEFT_PARENTHESIS  shift 84
+	LEFT_BRACKET  shift 91
+	TIMES  shift 87
+	DIVIDE  shift 88
+	.  reduce 39 (src line 277)
+
+
+state 135
+	Comparator:  LESS_THAN EQUALS.    (43)
+
+	.  reduce 43 (src line 294)
+
+
+state 136
+	Comparator:  GREATER_THAN EQUALS.    (45)
+
+	.  reduce 45 (src line 302)
+
+
+state 137
+	ArrayDefinition:  Identifier LEFT_PARENTHESIS Args.RIGHT_PARENTHESIS 
+	Args:  Args.Separator Arg 
+
+	COMMA  shift 101
+	SEMICOLON  shift 102
+	RIGHT_PARENTHESIS  shift 145
+	.  error
+
+	Separator  goto 100
+
+state 138
+	ForStatement:  FOR Identifier EQUALS Expression.TO Expression 
+	ForStatement:  FOR Identifier EQUALS Expression.TO Expression STEP Expression 
+	FunctionCall:  Expression.LEFT_PARENTHESIS Args RIGHT_PARENTHESIS 
+	AdditiveExpression:  Expression.PLUS Expression 
+	AdditiveExpression:  Expression.MINUS Expression 
+	MultiplicationExpression:  Expression.TIMES Expression 
+	DivisionExpression:  Expression.DIVIDE Expression 
+	PowerExpression:  Expression.CIRCUMFLEX Expression 
+	MapPropertyExpression:  Expression.DOT IDENTIFIER 
+	MapPropertyExpression:  Expression.LEFT_BRACKET Expression RIGHT_BRACKET 
+
+	TO  shift 146
+	DOT  shift 90
+	PLUS  shift 85
+	MINUS  shift 86
+	CIRCUMFLEX  shift 89
+	LEFT_PARENTHESIS  shift 84
+	LEFT_BRACKET  shift 91
+	TIMES  shift 87
+	DIVIDE  shift 88
+	.  error
+
+
+state 139
+	DefStatement:  DEF Identifier EQUALS Expression.    (25)
+	FunctionCall:  Expression.LEFT_PARENTHESIS Args RIGHT_PARENTHESIS 
+	AdditiveExpression:  Expression.PLUS Expression 
+	AdditiveExpression:  Expression.MINUS Expression 
+	MultiplicationExpression:  Expression.TIMES Expression 
+	DivisionExpression:  Expression.DIVIDE Expression 
+	PowerExpression:  Expression.CIRCUMFLEX Expression 
+	MapPropertyExpression:  Expression.DOT IDENTIFIER 
+	MapPropertyExpression:  Expression.LEFT_BRACKET Expression RIGHT_BRACKET 
+
+	DOT  shift 90
+	PLUS  shift 85
+	MINUS  shift 86
+	CIRCUMFLEX  shift 89
+	LEFT_PARENTHESIS  shift 84
+	LEFT_BRACKET  shift 91
+	TIMES  shift 87
+	DIVIDE  shift 88
+	.  reduce 25 (src line 192)
+
+
+state 140
+	DefStatement:  DEF Identifier LEFT_PARENTHESIS Identifier.RIGHT_PARENTHESIS EQUALS Expression 
+
+	RIGHT_PARENTHESIS  shift 147
+	.  error
+
+
+state 141
+	FunctionCall:  Expression LEFT_PARENTHESIS Args RIGHT_PARENTHESIS.    (47)
+
+	.  reduce 47 (src line 309)
+
+
+state 142
+	MapPropertyExpression:  Expression LEFT_BRACKET Expression RIGHT_BRACKET.    (81)
+
+	.  reduce 81 (src line 418)
+
+
+state 143
+	MapPropertyList:  MapPropertyList COMMA MapProperty.    (84)
+
+	.  reduce 84 (src line 431)
+
+
+state 144
+	FunctionCall:  Expression.LEFT_PARENTHESIS Args RIGHT_PARENTHESIS 
+	AdditiveExpression:  Expression.PLUS Expression 
+	AdditiveExpression:  Expression.MINUS Expression 
+	MultiplicationExpression:  Expression.TIMES Expression 
+	DivisionExpression:  Expression.DIVIDE Expression 
+	PowerExpression:  Expression.CIRCUMFLEX Expression 
+	MapPropertyExpression:  Expression.DOT IDENTIFIER 
+	MapPropertyExpression:  Expression.LEFT_BRACKET Expression RIGHT_BRACKET 
+	MapProperty:  IDENTIFIER COLON Expression.    (85)
+
+	DOT  shift 90
+	PLUS  shift 85
+	MINUS  shift 86
+	CIRCUMFLEX  shift 89
+	LEFT_PARENTHESIS  shift 84
+	LEFT_BRACKET  shift 91
+	TIMES  shift 87
+	DIVIDE  shift 88
+	.  reduce 85 (src line 436)
+
+
+state 145
+	ArrayDefinition:  Identifier LEFT_PARENTHESIS Args RIGHT_PARENTHESIS.    (49)
+
+	.  reduce 49 (src line 319)
+
+
+state 146
+	ForStatement:  FOR Identifier EQUALS Expression TO.Expression 
+	ForStatement:  FOR Identifier EQUALS Expression TO.Expression STEP Expression 
+
+	INTEGER  shift 56
+	FLOAT  shift 57
+	STRING_LITERAL  shift 55
+	BOOLEAN  shift 58
+	NULL  shift 59
+	IDENTIFIER  shift 63
+	MINUS  shift 62
+	LEFT_PARENTHESIS  shift 38
+	LEFT_BRACKET  shift 61
+	LEFT_BRACE  shift 60
+	.  error
+
+	Symbol  goto 44
+	MapPropertyExpression  goto 43
+	AdditiveExpression  goto 39
+	MultiplicationExpression  goto 40
+	DivisionExpression  goto 41
+	PowerExpression  goto 42
+	Expression  goto 148
+	UnaryExpression  goto 53
+	Identifier  goto 54
+	StringLiteral  goto 45
+	Integer  goto 46
+	Float  goto 47
+	Null  goto 49
+	Boolean  goto 48
+	Array  goto 51
+	Map  goto 50
+	FunctionCall  goto 52
+
+state 147
+	DefStatement:  DEF Identifier LEFT_PARENTHESIS Identifier RIGHT_PARENTHESIS.EQUALS Expression 
+
+	EQUALS  shift 149
+	.  error
+
+
+state 148
+	ForStatement:  FOR Identifier EQUALS Expression TO Expression.    (36)
+	ForStatement:  FOR Identifier EQUALS Expression TO Expression.STEP Expression 
+	FunctionCall:  Expression.LEFT_PARENTHESIS Args RIGHT_PARENTHESIS 
+	AdditiveExpression:  Expression.PLUS Expression 
+	AdditiveExpression:  Expression.MINUS Expression 
+	MultiplicationExpression:  Expression.TIMES Expression 
+	DivisionExpression:  Expression.DIVIDE Expression 
+	PowerExpression:  Expression.CIRCUMFLEX Expression 
+	MapPropertyExpression:  Expression.DOT IDENTIFIER 
+	MapPropertyExpression:  Expression.LEFT_BRACKET Expression RIGHT_BRACKET 
+
+	STEP  shift 150
+	DOT  shift 90
+	PLUS  shift 85
+	MINUS  shift 86
+	CIRCUMFLEX  shift 89
+	LEFT_PARENTHESIS  shift 84
+	LEFT_BRACKET  shift 91
+	TIMES  shift 87
+	DIVIDE  shift 88
+	.  reduce 36 (src line 252)
+
+
+state 149
+	DefStatement:  DEF Identifier LEFT_PARENTHESIS Identifier RIGHT_PARENTHESIS EQUALS.Expression 
+
+	INTEGER  shift 56
+	FLOAT  shift 57
+	STRING_LITERAL  shift 55
+	BOOLEAN  shift 58
+	NULL  shift 59
+	IDENTIFIER  shift 63
+	MINUS  shift 62
+	LEFT_PARENTHESIS  shift 38
+	LEFT_BRACKET  shift 61
+	LEFT_BRACE  shift 60
+	.  error
+
+	Symbol  goto 44
+	MapPropertyExpression  goto 43
+	AdditiveExpression  goto 39
+	MultiplicationExpression  goto 40
+	DivisionExpression  goto 41
+	PowerExpression  goto 42
+	Expression  goto 151
+	UnaryExpression  goto 53
+	Identifier  goto 54
+	StringLiteral  goto 45
+	Integer  goto 46
+	Float  goto 47
+	Null  goto 49
+	Boolean  goto 48
+	Array  goto 51
+	Map  goto 50
+	FunctionCall  goto 52
+
+state 150
+	ForStatement:  FOR Identifier EQUALS Expression TO Expression STEP.Expression 
+
+	INTEGER  shift 56
+	FLOAT  shift 57
+	STRING_LITERAL  shift 55
+	BOOLEAN  shift 58
+	NULL  shift 59
+	IDENTIFIER  shift 63
+	MINUS  shift 62
+	LEFT_PARENTHESIS  shift 38
+	LEFT_BRACKET  shift 61
+	LEFT_BRACE  shift 60
+	.  error
+
+	Symbol  goto 44
+	MapPropertyExpression  goto 43
+	AdditiveExpression  goto 39
+	MultiplicationExpression  goto 40
+	DivisionExpression  goto 41
+	PowerExpression  goto 42
+	Expression  goto 152
+	UnaryExpression  goto 53
+	Identifier  goto 54
+	StringLiteral  goto 45
+	Integer  goto 46
+	Float  goto 47
+	Null  goto 49
+	Boolean  goto 48
+	Array  goto 51
+	Map  goto 50
+	FunctionCall  goto 52
+
+state 151
+	DefStatement:  DEF Identifier LEFT_PARENTHESIS Identifier RIGHT_PARENTHESIS EQUALS Expression.    (26)
+	FunctionCall:  Expression.LEFT_PARENTHESIS Args RIGHT_PARENTHESIS 
+	AdditiveExpression:  Expression.PLUS Expression 
+	AdditiveExpression:  Expression.MINUS Expression 
+	MultiplicationExpression:  Expression.TIMES Expression 
+	DivisionExpression:  Expression.DIVIDE Expression 
+	PowerExpression:  Expression.CIRCUMFLEX Expression 
+	MapPropertyExpression:  Expression.DOT IDENTIFIER 
+	MapPropertyExpression:  Expression.LEFT_BRACKET Expression RIGHT_BRACKET 
+
+	DOT  shift 90
+	PLUS  shift 85
+	MINUS  shift 86
+	CIRCUMFLEX  shift 89
+	LEFT_PARENTHESIS  shift 84
+	LEFT_BRACKET  shift 91
+	TIMES  shift 87
+	DIVIDE  shift 88
+	.  reduce 26 (src line 199)
+
+
+state 152
+	ForStatement:  FOR Identifier EQUALS Expression TO Expression STEP Expression.    (37)
+	FunctionCall:  Expression.LEFT_PARENTHESIS Args RIGHT_PARENTHESIS 
+	AdditiveExpression:  Expression.PLUS Expression 
+	AdditiveExpression:  Expression.MINUS Expression 
+	MultiplicationExpression:  Expression.TIMES Expression 
+	DivisionExpression:  Expression.DIVIDE Expression 
+	PowerExpression:  Expression.CIRCUMFLEX Expression 
+	MapPropertyExpression:  Expression.DOT IDENTIFIER 
+	MapPropertyExpression:  Expression.LEFT_BRACKET Expression RIGHT_BRACKET 
+
+	DOT  shift 90
+	PLUS  shift 85
+	MINUS  shift 86
+	CIRCUMFLEX  shift 89
+	LEFT_PARENTHESIS  shift 84
+	LEFT_BRACKET  shift 91
+	TIMES  shift 87
+	DIVIDE  shift 88
+	.  reduce 37 (src line 260)
+
+
+48 terminals, 46 nonterminals
+92 grammar rules, 153/2000 states
+0 shift/reduce, 0 reduce/reduce conflicts reported
+95 working sets used
+memory: parser 661/30000
+55 extra closures
+559 shift entries, 1 exceptions
+85 goto entries
+488 entries saved by goto default
+Optimizer space used: output 236/30000
+236 table entries, 27 zero
+maximum spread: 48, maximum offset: 150
